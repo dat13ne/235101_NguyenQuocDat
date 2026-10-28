@@ -15,6 +15,15 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ Ket noi MongoDB thanh cong'))
   .catch(err => console.log('❌ Loi ket noi MongoDB:', err));
 
+// 0. Endpoint kiem tra trang thai Server (Yeu cau 3 - Cau 8)
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Backend is running smoothly' });
+});
+
+app.get('/', (req, res) => {
+  res.send('Backend Book Management API is Live');
+});
+
 // 1. Lấy danh sách sách + Tìm kiếm (Yêu cầu 1 & 6)
 app.get('/api/books', async (req, res) => {
   try {
